@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components\\popup-messages\\error-popup-message",
+    "\\src\\app\\models\\applicationLogicModels",
+    "\\src\\app\\modules",
+    "\\src\\app\\services"
+  ],
+  "SelectedNode": "\\src\\app\\modules\\app-routing.module.ts",
+  "PreviewInSolutionExplorer": false
+}

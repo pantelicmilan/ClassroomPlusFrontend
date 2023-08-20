@@ -1,0 +1,47 @@
+<img src ="assets/classroom-plus-logo.png" class ="logo"/>
+<form (ngSubmit)="onSubmit()" class ="loginForm">
+    <input 
+    maxlength="16" 
+    required 
+    type = "text" 
+    placeholder="Enter your username" 
+    [(ngModel)]="username" name = "username"
+    />
+
+    <input 
+    type ="password" 
+    placeholder ="Enter your password" 
+    [(ngModel)]="password" 
+    name = "password"
+    />
+
+    <button type="submit">Log in</button>
+
+    <a (click) = "switchToRegister()">Don't have a account, register here!</a>
+
+    <ng-container *ngIf="isLoginError">
+        <app-error-message 
+        [errorType]="'Login Error'" 
+        [errorContent]="errorContent"
+        (errorMessageFalseEvent)="isLoginError = false"
+        >
+        </app-error-message>
+    </ng-container>
+
+</form>
+
+<ng-container *ngIf="isLoadingSpinnerOn">
+    <app-loading-spinner></app-loading-spinner>
+</ng-container>
+
+<div class ='about-me'>
+    <p>Full Stack Dev: Milan Pantelić</p>
+</div>
+
+
+
+
+
+
+
+

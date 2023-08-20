@@ -1,0 +1,33 @@
+<ng-container *ngIf="isLoading==true">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isLoading==false">
+    <p class ="joinedClassrooms">Joined Classrooms: {{currentUserClassroomEnrollments.length}}</p>
+
+    <div class ="switch">
+        <a (click)="switchToOwned()" style ="color: rgb(57, 121, 190); cursor: pointer;">Owned</a>
+        <b><a>Joined</a></b>
+    </div>
+
+    <ng-container *ngIf="currentUserClassroomEnrollments.length == 0">
+        <h1> You are not in any classroom :/ ... </h1>
+    </ng-container>
+    
+    <ng-container *ngFor="let classroomEnrollment of currentUserClassroomEnrollments">
+    
+        <app-classroom-card 
+        [classroomName]="classroomEnrollment.classroom.name"
+        [classroomId]="classroomEnrollment.classroomId"
+        [classroomJoinCode]="classroomEnrollment.classroom.joinCode"
+        [classroomOwnerUsername]="classroomEnrollment.classroom.creator.username"
+        >
+        </app-classroom-card>
+    
+    </ng-container>
+    
+    <ng-container *ngIf="currentUserClassroomEnrollments.length>0">
+        <p>End...</p>
+    </ng-container>
+
+</ng-container>

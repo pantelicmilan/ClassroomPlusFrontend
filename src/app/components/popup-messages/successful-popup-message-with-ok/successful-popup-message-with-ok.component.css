@@ -1,0 +1,56 @@
+:host{
+    position: fixed;
+    z-index: 10000000;
+    background-color: rgb(138, 218, 153);
+    width: auto;
+    height: auto;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    color: white;
+    font-size: 2rem;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+:host a{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: rgb(21, 85, 21);
+    border-radius: 8px;
+    margin-right: 3rem;
+    cursor: pointer;
+}
+
+:host p, :host h1{
+    padding-right: 1rem;
+}
+
+.accept-button:hover{
+    transition: .2s !important;
+    background-color: rgb(64, 191, 81) !important;
+}
+
+@media(max-width: 600px){
+    :host{
+        width: 80%;
+        height: auto;
+    }
+    :host a{
+        font-size: 1.7rem;
+    }
+    :host h1{
+        font-size: 2rem;
+    }
+    :host p{
+        font-size: 1.6rem;
+    }
+}

@@ -1,0 +1,81 @@
+:host{
+    background-color: #FF9999;
+    border-radius: 10px;
+    padding:1rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 2rem;
+}
+
+:host p:first-child{
+    font-size: 2rem;
+    margin-bottom: 0px;
+    margin-top: .5rem;
+}
+
+:host p:nth-child(2){
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+:host a {
+    color: white;
+    background-color: #fa5555;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    border-radius: 7px;
+}
+
+:host a:hover{
+    transition: .2s;
+    background-color: #fe8585;
+}
+
+
+:host a{
+    font-size: 2rem;
+    
+}
+
+:host a:hover{
+
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    :host a {
+        color: white;
+    }
+}
+
+@media(max-width: 600px){
+
+    :host p:first-child{
+        font-size: 1.7rem;
+        margin-bottom: 0px;
+        margin-top: .5rem;
+    }
+
+    :host p:nth-child(2){
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+
+    :host a {
+        color: white;
+        background-color: #fa5555;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        padding-top: .6rem;
+        padding-bottom: .6rem;
+        border-radius: 7px;
+    }
+
+}

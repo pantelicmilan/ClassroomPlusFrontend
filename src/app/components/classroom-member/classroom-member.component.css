@@ -1,0 +1,18 @@
+img{
+    border-radius: 50%;
+}
+:host{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(209, 209, 209);
+    border-radius: 8px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2rem;
+
+}
+p{
+    font-size: 2rem;
+}

@@ -1,0 +1,175 @@
+.comments_comment{
+    background-color:rgb(106, 197, 106) ;
+    margin: 1rem;
+    padding: 3rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    word-break: break-word;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.comment-info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comment-edited{
+    padding: .4rem;
+    background-color: darkcyan;
+    border-radius: 8px;
+}
+
+.comments__write-comment{
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-bottom: 2rem;
+}
+
+.comments__write-comment input{
+    padding: 1rem;
+    border-radius: 8px;
+    outline: none;
+    font-size: 2rem;
+    width: 80%;
+}
+
+.comments__write-comment button{
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(106, 197, 106);
+    color: white;
+    cursor: pointer;
+    width: 30%;
+}
+
+.comments__write-comment button:hover{
+    transition: .2s;
+    background-color: rgb(27, 108, 27);
+    border: 1px solid rgb(106, 197, 106);
+}
+
+.edit-comment-image{
+    position: absolute;
+    right: 8rem;
+    top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.delete-comment-image{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.edit-comment-image:hover{
+    transition: .2s;
+    background-color: rgb(65, 163, 65);
+    cursor: pointer;
+}
+
+.delete-comment-image:hover{
+    transition: .2s;
+    background-color: rgb(199, 53, 53);
+    cursor: pointer;
+}
+
+
+.edit-comment-content-field{
+    width: 100%;
+    padding: .5rem;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    resize: none;
+    border: 1px solid green;
+    outline: none;
+    background-color:rgb(83, 192, 83) ;
+    color: white;
+    height: 200px;
+}
+
+.edit-comment-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    margin-bottom: 1rem;
+
+}
+
+.edit-comment-button{
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: red;
+    border: none;
+    color: white;
+    background-color: rgb(45, 151, 45) ;
+    cursor: pointer;
+}
+
+.edit-comment-button:hover{
+    transition: .2s;
+    background-color: rgb(65, 177, 65) ;
+}
+
+
+
+@media(max-width: 1000px){
+    .comments__write-comment input{
+        font-size: 1.7rem;
+    }
+    
+    .comments__write-comment button{
+        font-size: 1.7rem;
+    }
+
+    .edit-comment-content-field{
+        font-size: 1.5rem;
+    }
+    
+    .post__comments{
+        width: 110%;
+    }
+
+    .comments_comment{
+        padding: 1.7rem;
+        font-size: 1.5rem;
+    }
+
+    .edit-comment-image,
+    .delete-comment-image{
+        top: 0;
+    }   
+}
+
+@media(max-width: 600px){
+    .edit-comment-image{
+        right: 6rem;
+    }
+
+    .comments__write-comment input{
+        font-size: 1.5rem;
+    }
+    
+    .comments__write-comment button{
+        font-size: 1.5rem;
+    }
+
+    .post__comments{
+
+        width: 130%;
+    }
+
+}
+

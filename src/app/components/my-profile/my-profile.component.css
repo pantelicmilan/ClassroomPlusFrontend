@@ -1,0 +1,124 @@
+:host{
+   animation:fade-in .5s ease ;
+   display: flex;
+   margin-top: 8rem;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+}
+
+:host a{
+    font-size: 2rem;
+    text-decoration: underline;
+    color: rgb(57, 121, 190);
+    cursor: pointer;
+}
+
+.main-selector{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-selector p {
+    font-size: 2rem;
+}
+
+.personal-info{
+    display: flex;
+    text-align: start;
+    gap: 0rem;
+    flex-direction: column;
+}
+
+.personal-info input{
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+.personal-info button{
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgb(29, 160, 29);
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+}
+
+.personal-info button:hover{
+    transition: .2s;
+    cursor: pointer;
+    background-color: rgb(7, 131, 7);
+}
+
+.personal-info button:disabled{
+    background-color: rgb(142, 207, 142);
+}
+
+.personal-info input:disabled{
+    background-color: rgb(202, 231, 202);
+}
+
+.personal-info * {
+    font-size: 2rem;
+}
+
+.personal-info p{
+    margin: 1rem;
+}
+
+.personal-info div{
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+}
+
+input:active,input:focus{
+    outline: none;
+}
+
+.personal-info__profile-picture-container{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+     
+.remove-image{
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.remove-image img{
+    margin: auto;
+}
+
+.upload-image-animation{
+    color: white;
+    position: absolute;
+    top: 3.0rem;
+    left: 1rem;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.upload-image-animation p{
+    font-size: 1.5rem;
+}
+
+@media(max-width: 500px){
+    .main-selector *{
+        font-size: 1.5rem;
+    }
+    .main-selector p {
+        font-size: 1.3rem;
+    }
+    .main-selector{
+        gap: 1rem;
+    }
+}

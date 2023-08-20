@@ -1,0 +1,51 @@
+<ul 
+[class.hamburger-menu-on]="isHamburgerMenuActive" 
+[class.menu-opening]="isHamburgerMenuActive"
+>
+
+    <li class = "my-classrooms" 
+    [ngClass]="{ 'hamburger-option-active' : '1' === navbarMenuOption }" 
+    (click)="redirectToRoute('main/dashboard/my-classrooms')" 
+    >
+        <div class ="nav__option">
+            <img src ="assets/my-classrooms.svg" class = "nav__icon active__li" />
+            <label>My Classrooms</label>
+        </div>
+    </li>
+
+    <li class = "my-profile" 
+    [ngClass]="{ 'hamburger-option-active' : '2' === navbarMenuOption }" 
+    (click)="redirectToRoute('main/dashboard/my-profile')" 
+    >
+        <div class ="nav__option">
+            <img src ="assets/my-profile.svg" class = "nav__icon" />
+            <label>My Profile</label>
+        </div>
+    </li>
+    <li class = "create-classroom" 
+    [ngClass]="{ 'hamburger-option-active' : '3' === navbarMenuOption }" 
+    (click)="redirectToRoute('main/dashboard/create-classroom')" 
+    >
+        <div class ="nav__option">
+            <img src ="assets/create-classroom.svg" class = "nav__icon" />
+            <label>Create Classroom</label>
+        </div>
+    </li>
+
+</ul>
+
+<div class ="nav__hamburger hamburger" (click)="hamburgerMenuForMobileClick()">
+    <img src ="assets/hamburger.svg" class ="nav__icon hamburger-icon"/>
+</div>
+
+<div class = "nav__join-code">
+    <input 
+    type = "text" 
+    placeholder="Enter join code!" 
+    [(ngModel)]="joinCodeInputField" 
+    (keydown.enter)="submitClassroomJoin()"
+    name = "joinCodeInputField"
+    />
+    <img src ="assets/find-join.svg" class ="nav__icon" (click)="submitClassroomJoin()"/>
+</div>
+

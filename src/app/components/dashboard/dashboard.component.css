@@ -1,0 +1,55 @@
+.classroom-found-popup-message{
+    position: fixed;
+    z-index: 10000000;
+    background-color: rgb(138, 218, 153);
+    width: 500px;
+    height: 300px;
+    padding-top: 1rem;
+    padding-left: 4rem;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    color: white;
+    font-size: 2rem;
+}
+
+.classroom-found-popup-message a{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: rgb(21, 85, 21);
+    border-radius: 8px;
+    margin-right: 3rem;
+    cursor: pointer;
+}
+
+.accept-button:hover{
+    transition: .2s !important;
+    background-color: rgb(64, 191, 81) !important;
+}
+
+.decline-button:hover{
+    transition: .2s !important;
+    background-color: rgb(238, 84, 84) !important;
+}
+.with-error{
+    background-color: rgb(226, 68, 68);
+}
+
+@media(max-width: 600px){
+    .classroom-found-popup-message{
+        width: 80%;
+        height: auto;
+    }
+    .classroom-found-popup-message a{
+        font-size: 1.7rem;
+    }
+    .classroom-found-popup-message h1{
+        font-size: 2rem;
+    }
+    .classroom-found-popup-message p{
+        font-size: 1.6rem;
+    }
+}

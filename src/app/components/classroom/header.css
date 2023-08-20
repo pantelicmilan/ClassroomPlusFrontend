@@ -1,0 +1,148 @@
+.header{
+    width: 100%;
+    background-color:rgb(106, 197, 106);
+    color: white;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4rem;
+    padding: 4rem;
+}
+
+.header__back-to-dashboard{
+    background-color: rgb(64, 158, 64);
+    padding: 0;
+    border-radius: 8px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    width: 50px;
+    position: relative;
+}
+
+.header__back-to-dashboard:hover{
+    transition: .2s;
+    background-color: rgb(27, 108, 27);
+}
+
+.header__back-to-dashboard:hover .back-to-dashboard__info{
+    display: block;
+}
+
+.back-to-dashboard__info{
+    position: absolute;
+    top: 50px;
+    display: none;
+    font-size: 1.7rem;
+    background-color: rgba(116, 116, 116, 0.269);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.header__classroom-name{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.edit-classroom-name{
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.edit-classroom-name:hover{
+    transition: .2s;
+    background-color: rgb(27, 108, 27);
+}
+
+.header__first-line{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.all-people{
+    align-items: center;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.all-people:hover{
+    border: 1px solid green;
+    border-radius: 8px;
+}
+
+.edit-classroom-name-section{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.edit-classroom-name-section input{
+    padding: 1rem;
+    font-size: 1.7rem;
+    font-weight: bold;
+    outline: none;
+    border: 1px solid green;
+    border-radius: 8px;
+    width: 500px;
+}
+
+.edit-classroom-name-section button{
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(65, 177, 65);
+    width: 100%;
+    cursor: pointer;
+}
+
+.edit-classroom-name-section button:hover{
+    transition: .2s;
+    background-color: rgb(46, 138, 46);
+}
+
+.delete-classroom:hover{
+    transition: .2s;
+    background-color: rgb(182, 46, 46);
+}
+
+
+@media(max-width: 1000px){
+    .header{
+        font-size: 2.5rem;
+    }
+}
+
+@media(max-width: 600px){
+
+    .edit-classroom-name-section input{
+        width: 300px;
+    }
+
+    
+
+    .post-field input,textarea, button {
+        width: 90%;
+    }
+
+    .header__first-line{
+        justify-content: space-around;
+    }
+
+}
+
+@media(max-width: 400px){
+    .edit-classroom-name-section input{
+        width: 200px;
+    }
+}

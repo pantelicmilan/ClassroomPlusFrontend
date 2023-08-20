@@ -1,0 +1,38 @@
+<img src ="assets/classroom-plus-logo.png" class ="logo"/>
+
+<form class ="registerForm" (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="username" name = "username" type = "text" placeholder="Username..."/>
+    <input [(ngModel)]="name" name ="name" type = "text" placeholder="Name..."/>
+    <input [(ngModel)]="surname" name ="surname" type = "text" placeholder="Surname..."/>
+    <input [(ngModel)]="email" name ="email" type = "text" placeholder="Email..."/>
+    <input [(ngModel)]="password" name ="password" type ="password" placeholder ="Password"/>
+    <button type="submit">Register</button>
+    <a (click) = "switchToLogin()">Already have a account, login here!</a>
+
+    <ng-container *ngIf="isRegisterError">
+        <app-error-message 
+        [errorType]="'Login Error'" 
+        [errorContent]="errorContent"
+        (errorMessageFalseEvent)="isRegisterError = false"
+        >
+        </app-error-message>
+    </ng-container>
+
+</form>
+
+<ng-container *ngIf="isRegisterComplete">
+    <app-successful-popup-message-with-ok 
+    (okClicked)="switchToLogin()" 
+    messageHeading="Succesfully registration" 
+    messageContent="If you click ok, you will be redirected to login">
+    </app-successful-popup-message-with-ok>
+</ng-container>
+
+<ng-container *ngIf="isLoadingSpinnerOn">
+    <app-loading-spinner></app-loading-spinner>
+</ng-container>
+
+
+<div class ='about-me'>
+    <p>Full Stack Dev: Milan Pantelić</p>
+</div>

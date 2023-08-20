@@ -1,0 +1,45 @@
+<ng-container *ngIf="isPageLoading==true">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isPageLoading==false">
+    <div class ="main__create-classroom">
+
+        <div class ="create-classroom__my-profile">
+            <label class ="my-profile__username">Teacher: {{currentUserInfo?.username}}</label>
+            <label class ="my-profile__username">Current Classrooms Owned: {{currentUserInfo?.classrooms?.length}} </label>
+        </div>
+    
+        <div class = "create-classroom__field">
+            <input type ="text" placeholder="Enter classroom name..." 
+            [(ngModel)]="classroomNameFieldText" 
+            (keyup.enter)="createClassroomSubmit()"/>
+  
+            <a (click)="createClassroomSubmit()">Create</a>
+        </div>
+    
+        <ng-container *ngIf="isErrorWithCreatingClassroom">
+            <app-error-popup-message
+            [errorHeading]="errorWithCreatingClassroomHeading"
+            [errorContent]="errorWithCreatingClassroomContent"
+            (isPopupClosed)="isErrorWithCreatingClassroom = false"
+            ></app-error-popup-message>
+        </ng-container>
+    
+        <ng-container *ngIf="isClassroomCreatedWithoutErrors">
+            <app-successful-popup-message-with-ok
+                [messageHeading]="'Classroom Created'"
+                [messageSubheading]="''"
+                [messageContent]="'Classroom created without problems!'"
+                (okClicked)="removePopupAndSwitchToOwnedClassroom()"
+            >
+            </app-successful-popup-message-with-ok>
+        </ng-container>
+    
+    </div>
+</ng-container>
+
+<ng-container *ngIf="isLoadingSpinnerOn">
+    <app-loading-spinner></app-loading-spinner>
+</ng-container>
+

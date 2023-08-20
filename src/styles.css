@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Space Grotesk', sans-serif;
+    
+}
+
+html{
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+input[type="text"]:focus,
+input[type ="password"]:focus
+{
+    outline: none;
+    box-shadow: none;
+}
+input{
+    border: 1px solid green;
+}
+input{
+    border: 1px solid green;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 20%;
+        left: -5rem;
+    }
+    100% {
+      opacity: 100%;
+      left: 0rem;
+    }
+  }

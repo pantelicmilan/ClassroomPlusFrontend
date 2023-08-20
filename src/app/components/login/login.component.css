@@ -1,0 +1,104 @@
+.loginForm{
+    margin-top: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    gap: .2rem;
+}
+
+.loginForm input{
+    padding: .7rem;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.loginForm button{
+    background-color: rgb(106, 197, 106);
+    border-radius: 5px;
+    height: 50px;
+    font-size: 2rem;
+    color: white;
+    border : none;
+    
+}
+.loginForm a{
+    font-size: 2rem;
+    color: blue;
+}
+
+.loginForm a:hover{
+
+    cursor: pointer;
+}
+
+.loginForm button:hover{
+    background-color: rgb(46, 167, 46);
+    cursor: pointer;
+}
+
+.loginForm button:active{
+    outline: none;
+}
+
+.errorMessage a:hover{
+    transition: .2s;
+    background-color: #fe8585;
+}
+
+@media (max-width: 1000px) {
+
+    .loginForm{
+        width: 70%;
+    }
+
+    .loginForm input{
+        padding: .7rem;
+        border-radius: 5px;
+        font-size: 1.7rem;
+    }
+    
+    .loginForm button{
+        background-color: rgb(106, 197, 106);
+        border-radius: 5px;
+        height: 40px;
+        font-size: 1.5rem;
+        color: white;
+        border : none;
+        
+    }
+
+    .loginForm a{
+        font-size: 1.5rem;
+        color: blue;
+    }
+}
+
+:host{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+
+.about-me{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.logo{
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+@media(max-width: 1000px){
+    .logo{
+        width: 100px;
+        height: 100px;
+    }
+
+}

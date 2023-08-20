@@ -1,0 +1,360 @@
+<ng-container *ngIf="isLoading == true">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf=" openedClassroomInfo && isLoading==false">
+    <div class ="classroom-wrapper">
+
+        <div class = "header">
+
+            <div class ="header__first-line">
+                <div (click)="backToDashboard()" class ="header__back-to-dashboard">
+                    <img src ="assets/back-to-dashboard.svg" width ="50px" height="50px">
+                    
+                    <div class ="back-to-dashboard__info">
+                        Back to dashboard
+                    </div>
+    
+                </div>
+                <p>Teacher: {{isCurrentLoggedUserClassroomOwner == true? "You" : openedClassroomInfo.creator.username}}</p>    
+            </div>
+        
+            <div class = "header__classroom-name">
+                
+                <ng-container *ngIf="isEditModeForClassroomNameTurnedOn == false">
+                    <b>Classroom Name: {{openedClassroomInfo.name}}</b>
+                </ng-container>
+    
+                <ng-container *ngIf="isEditModeForClassroomNameTurnedOn == true">
+                    <div class ="edit-classroom-name-section">
+                        <input (keydown.enter)="editClassroomNameSubmit()"  placeholder="Edit classroom name..." [(ngModel)]="classroomNameEditDraft"/>
+                        <button (click)="editClassroomNameSubmit()">Apply changes</button>
+                    </div>
+                </ng-container>
+    
+                <ng-container *ngIf="isCurrentLoggedUserClassroomOwner == true">
+                    <img (click)="classroomNameEditModeSwitch()" src ="assets/edit.svg" width="30px" height="30px" class ="edit-classroom-name"/>
+                    <img (click)="isDeleteClassroomDialogBoxOpened=!isDeleteClassroomDialogBoxOpened" src ="assets/delete.svg" width="30px" height="30px" class ="edit-classroom-name delete-classroom"/>
+                </ng-container>
+    
+                <ng-container *ngIf="isCurrentLoggedUserClassroomOwner == false">
+                    <img  (click)="leaveClassroomDialogBoxSwitch()" src ="assets/leave.svg" width="40px" height="40px" class ="edit-classroom-name delete-classroom"/>
+                </ng-container>
+    
+            </div>
+        
+        </div>
+    
+        <div class ="main">
+            <img (click)="postsOrMembersRenderSwitch()" src="assets/all-people.svg" width="70px" height="70px" class ="all-people"/>
+    
+            <ng-container *ngIf="isCurrentLoggedUserClassroomOwner == true">
+                <div class ="post-field">
+                    <input type = "text" placeholder="Enter a post title" [(ngModel)]="postDraftTitle"/>
+                    <textarea placeholder="Write a post content here.." [(ngModel)]="postDraftContent"></textarea>
+                    <button (click)="createPostSubmit(openedClassroomInfo.id)">Create Post</button>
+                </div>
+            </ng-container>
+    
+            <ng-container *ngIf="isPostsOnDisplaySwitch==true">
+                <ng-container *ngIf="openedClassroomInfo!=null && openedClassroomInfo.posts.length > 0">
+    
+                    <div class ="posts-container">
+                        <!--classroomInfo.posts.length-->
+                        <h4 class ="post-container__head">Posts: </h4>
+            
+                        <div class ="posts-container__filter">
+                            <input type ="text" placeholder="Search for specific post..." [(ngModel)]="searchSpecificPostFieldText" (ngModelChange)="updatePostsCountAfterFilter()"/>
+                        </div>
+
+                        <ng-container *ngFor="let post of openedClassroomInfo.posts">
+            
+                            <div class = "post" [class.hide-post]="isPostHiddenAfterFilter(post)">
+                                <div class ="post__heading">
+        
+                                    <ng-container *ngIf="isPostEditModeOn[post.id]==false || isPostEditModeOn[post.id]==undefined">
+                                        <h3>{{post.name}}</h3>
+                                    </ng-container>
+                                    <p class ="heading__created-at">{{post.createdDate | date:'dd.MM.yyyy HH:mm' }}</p>     
+        
+                                </div>
+        
+                                <ng-container *ngIf="isPostEditModeOn[post.id]==false || isPostEditModeOn[post.id]==undefined">
+                                    <p>{{post.description}}</p>
+                                </ng-container>
+        
+                                <ng-container *ngIf="isPostEditModeOn[post.id]==true">
+                                    <div class = "edit-post-section">
+                                        <input class ="edit-post-title" placeholder="Enter title..." (keydown.enter)="editPostSubmit(post, openedClassroomInfo.id)" [(ngModel)]="postEditModeDataDrafts[post.id].name"/>
+                                        <textarea class ="edit-post-content" placeholder="Enter content..." (keydown.enter)="editPostSubmit(post, openedClassroomInfo.id)" [(ngModel)]="postEditModeDataDrafts[post.id].description"></textarea>
+                                        <button (click)="editPostSubmit(post, openedClassroomInfo.id)">Apply changes</button>
+                                    </div>
+                                </ng-container>
+                                
+                                <div class ="post__show-comments"  (click)="showOrDisplayCommentInPostSwitch(post.id)">
+                                    <img src ="assets/comments.svg" width="50px" height="50px">
+                                    <p> {{post.comments.length}} </p>
+                                    <div class ="show-comments__message">Switch comments</div>
+                                </div>
+                
+                                <div class = "post__comments" [hidden]="isCommentsHiddenOnPost[post.id]">
+        
+                                    <div class ="comments__write-comment">
+                                        <input type ="text" placeholder ="Write comment here..." [(ngModel)]="commentDrafts[post.id]" (keydown.enter)="createCommentSubmit(post.id)"/>
+                                        <button (click)="createCommentSubmit(post.id)">Post</button>
+                                    </div>
+        
+                                    <ng-container *ngIf="post.comments.length == 0">
+                                        No comments yet :/
+                                    </ng-container>
+        
+                                    <ng-container *ngFor="let comment of post.comments">
+                                     
+                                        <div class ="comments_comment">
+        
+                                            <b>{{comment.user.username}}:</b>
+        
+                                            <ng-container  *ngIf="isCommentEditModeOn[comment.id] != true">
+                                                <div class= "comment-username">
+                                                    {{comment.content}}                      
+                                                </div>
+                                            </ng-container>
+        
+                                            <ng-container *ngIf="isCommentEditModeOn[comment.id] == true">
+                                                <div class ="edit-comment-section">
+                                                    <textarea type ="text" class ="edit-comment-content-field" (keydown.enter)="editCommentSubmit(comment)" [(ngModel)]="commentEditModeDataDrafts[comment.id].content"></textarea>
+                                                    <button class ="edit-comment-button" (click)="editCommentSubmit(comment)">Apply Changes</button>
+                                                </div>
+                                            </ng-container>
+            
+                                            <div class ="comment-info">
+            
+                                                <ng-container *ngIf="comment.edited==true">
+                                                    <div class ="comment-edited">
+                                                        Edited
+                                                    </div>
+                                                </ng-container>
+            
+                                                <div class = "comment-created-at">
+                                                    {{comment.createdDate | date:'dd.MM.yyyy HH:mm'}}
+                                                </div>
+                                            </div>
+        
+                                            <ng-container 
+                                            *ngIf="
+                                            currentLoggedUser!=undefined &&  
+                                            comment.userId == currentLoggedUser?.id || 
+                                            isCurrentLoggedUserClassroomOwner == true">
+                                                <img (click)="deleteCommentSubmit(comment)" src ="assets/delete.svg" width="40px" height="40px" class ="delete-comment-image"/>
+                                            </ng-container>
+        
+                                            <ng-container 
+                                            *ngIf="
+                                            currentLoggedUser!=undefined &&  
+                                            comment.userId == currentLoggedUser?.id">
+                                                <img (click)="commentEditModeSwitch(comment)" src ="assets/edit.svg" width="40px" height="40px" class ="edit-comment-image"/>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                
+                                <ng-container *ngIf="isCurrentLoggedUserClassroomOwner==true">
+                                    <img (click)="postEditModeSwitch(post)" src = "assets/edit.svg" width="50px" height="50px" class ="edit-post-image"/>
+                                    <img (click)="activateDeletePostPopup(post.id)" src="assets/delete.svg" width="50px" height="50px" class ="delete-post-image"/>
+                                </ng-container>
+        
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="isEndOfPostList == false">
+                            <a class="load-more" (click)="getPaginatedPostListByClassroomId()">Load more...</a>
+                        </ng-container>
+
+                        <ng-container *ngIf="isEndOfPostList == true">
+                            <a>End...</a>
+                        </ng-container>
+            
+                    </div>
+                </ng-container>
+            </ng-container>
+    
+            <ng-container *ngIf="isPostsOnDisplaySwitch==false" >
+
+                <ng-container *ngIf="classroomMembers!.length > 0 ">
+                    <div class ="posts-container" >
+                        <h4>Members: ({{classroomMembers?.length}})</h4>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="classroomMembers!.length == 0 ">
+                    <div class ="posts-container" >
+                        <h4>No members yet :/</h4>
+                    </div>
+                </ng-container>
+  
+                <div class ="member-list">
+                    <ng-container *ngFor="let member of classroomMembers">
+                        <app-classroom-member
+                        [username]="member.username" 
+                        [profileImageUrl]="member.profileImageUrl">
+                        </app-classroom-member>
+                    </ng-container>
+                </div>
+        
+            </ng-container>
+    
+
+            <ng-container *ngIf="openedClassroomInfo!=null && openedClassroomInfo.posts.length == 0 && isPostsOnDisplaySwitch==true">
+                <div class ="posts-container">
+                    <h4 class ="post-container__head">No posts yet :/</h4>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    </ng-container>
+
+<ng-container *ngIf="isErrorInCreatingComment">
+    <app-error-popup-message
+    [errorContent]="commentCreatingErrorMessage"
+    [errorHeading]="'Error'"
+    (isPopupClosed)="isErrorInCreatingComment=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isErrorInCreatingPost">
+    <app-error-popup-message
+    [errorContent]="postCreatingErrorMessage"
+    [errorHeading]="commentCreatingErrorMessage"
+    (isPopupClosed)="isErrorInCreatingPost=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="postForDeleteId != null && isPostForDeletePopupOn">
+    <app-successful-popup-message-with-accept-and-decline
+    (acceptClicked)="postForDeleteId=null"
+    (declineClicked)="deletePostSubmit(postForDeleteId)"
+    [messageHeading]="'Delete post.'"
+    [messageSubheading]="''"
+    [messageContent]="'Are you sure do you want to delete a post, u can not back them!'"
+    [acceptButtonContent]="'Decline'"
+    [declineButtonContent]="'Delete'"
+    >
+    </app-successful-popup-message-with-accept-and-decline>
+</ng-container>
+
+<ng-container *ngIf="isErrorInDeletingPost">
+    <app-error-popup-message
+    [errorContent]="postDeleteErrorMessage"
+    [errorHeading]="'Error in deleting post'"
+    (isPopupClosed)="isErrorInDeletingPost=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isErrorInEditingPost==true">
+    <app-error-popup-message
+    [errorContent]="postEditErrorMessage"
+    [errorHeading]="'Error in editing post'"
+    (isPopupClosed)="isErrorInEditingPost=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isErrorInEditingComment">
+    <app-error-popup-message
+    [errorContent]="commentEditingErrorMessage"
+    [errorHeading]="'Error in editing comment'"
+    (isPopupClosed)="isErrorInEditingComment=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isErrorInDeletingComment == true">
+    <app-error-popup-message
+    [errorContent]="commentDeleteErrorMessage"
+    [errorHeading]="'Error in deleting comment'"
+    (isPopupClosed)="isErrorInDeletingComment=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isErrorInEditingClassroomName == true">
+    <app-error-popup-message
+    [errorContent]="classroomNameEditErrorMessage"
+    [errorHeading]="'Error in editing classroom name'"
+    (isPopupClosed)="isErrorInEditingClassroomName=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isEditPostDataAndDbDataSame == true">
+    <app-error-popup-message
+    [errorContent]="'U can not make a change request without changing post content'"
+    [errorHeading]="'Error with editing post!'"
+    (isPopupClosed)="isEditPostDataAndDbDataSame = false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+
+<ng-container *ngIf="isEditCommentDataAndDbDataSame == true">
+    <app-error-popup-message
+    [errorContent]="'You must change comment content to be able to edit comment!'"
+    [errorHeading]="'Error with editing comment!'"
+    (isPopupClosed)="isEditCommentDataAndDbDataSame=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isDeleteClassroomDialogBoxOpened==true">
+
+    <app-successful-popup-message-with-accept-and-decline
+    (acceptClicked)="isDeleteClassroomDialogBoxOpened = false"
+    (declineClicked)="deleteClassroomSubmit()"
+    [messageHeading]="'Deleting classroom...'"
+    [messageSubheading]="''"
+    [messageContent]="'Are you sure do you want to delete classroom, u can not back them later?!'"
+    [acceptButtonContent]="'Decline'"
+    [declineButtonContent]="'Delete'"
+    >
+    </app-successful-popup-message-with-accept-and-decline>
+</ng-container>
+
+<ng-container *ngIf="isErrorInDeletingClassroom == true">
+    <app-error-popup-message
+    [errorContent]="classroomDeleteErrorMessage"
+    [errorHeading]="'Error with deleting classroom!'"
+    (isPopupClosed)="isErrorInDeletingClassroom=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isLeaveClassroomDialogBoxOpened==true">
+
+    <app-successful-popup-message-with-accept-and-decline
+    (acceptClicked)="isLeaveClassroomDialogBoxOpened = false"
+    (declineClicked)="leaveClassroomSubmit()"
+    [messageHeading]="'Leave Classroom...'"
+    [messageSubheading]="''"
+    [messageContent]="'Are you sure do you want to live from the classroom?'"
+    [acceptButtonContent]="'No'"
+    [declineButtonContent]="'Yes'"
+    >
+    </app-successful-popup-message-with-accept-and-decline>
+</ng-container>
+
+
+<ng-container *ngIf="isErrorWithLeavingFromClassroom == true">
+    <app-error-popup-message
+    [errorContent]="classroomLeavingErrorMessage"
+    [errorHeading]="'Error with leaving from the classroom...'" 
+    (isPopupClosed)="isErrorWithLeavingFromClassroom=false"
+    >
+    </app-error-popup-message>
+</ng-container>
+
+<ng-container *ngIf="isLoadingSpinnerOn">
+    <app-loading-spinner></app-loading-spinner>
+</ng-container>

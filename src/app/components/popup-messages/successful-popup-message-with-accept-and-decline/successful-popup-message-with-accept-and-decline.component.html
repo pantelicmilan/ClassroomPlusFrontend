@@ -1,0 +1,18 @@
+<h1>{{messageHeading}}</h1>
+<p><b>{{messageSubheading}}</b></p>
+<p>{{messageContent}}</p>
+<div style="margin-top: 2rem;">
+    <a class ="accept-button" 
+    (click)="acceptClick()"
+    >
+    {{acceptButtonContent}}
+    </a>
+
+    <a class ="decline-button"
+    (click)="declineClick()"
+    style="background-color: rgb(196, 92, 92);"
+    >
+    {{declineButtonContent}}
+    </a>
+    
+</div>

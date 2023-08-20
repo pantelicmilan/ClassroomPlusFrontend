@@ -1,0 +1,41 @@
+:host{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+:host p {
+    font-size: 2rem;
+    margin-bottom: .1rem;
+}
+
+.classroomCard:hover{
+    cursor: pointer;
+    scale: 1.05;
+    transition: 0.2s;
+    background-color: rgb(60, 171, 60);
+}
+
+.classroomCard{
+    background-color: rgb(106, 197, 106);
+    width: 600px;
+    height: 170px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    position: relative;
+}
+
+
+@media(max-width: 800px){
+    .classroomCard{
+        width: 90%;
+    }
+}

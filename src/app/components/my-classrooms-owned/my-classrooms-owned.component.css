@@ -1,0 +1,23 @@
+:host{
+    width: 100%;
+    margin-top: 4rem;
+    animation:fade-in .5s ease ;
+}
+:host p {
+    font-size: 2rem;
+    text-align: center;
+}
+:host a {
+    font-size: 1.7rem;
+    margin-right: 1rem;
+}
+.switch{
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

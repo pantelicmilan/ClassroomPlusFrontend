@@ -1,0 +1,156 @@
+
+:host{
+    animation:fade-in .5s ease ;
+}
+
+.main__create-classroom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+
+    margin-top: 10rem;
+}
+
+
+.create-classroom__field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+
+  
+}
+
+.create-classroom__field input{
+
+    width: 40%;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 200;
+    border-radius: .5rem;
+}
+
+.create-classroom__field a{
+    width: 40%;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 200;
+    border-radius: .5rem;
+    text-align: center;
+    background-color: rgb(41, 155, 41);
+    color: white;
+    text-decoration: none;
+}
+
+.my-profile__username{
+    font-size: 2rem;
+}
+
+.create-classroom__my-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height:3rem;
+}
+
+.create-classroom__created{
+    display: flex;
+    gap: 1rem;
+    background-color: rgb(223, 255, 223);
+    padding: 2rem;
+    border-radius: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.created__text{
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.created__sucess-heading{
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.created__join-code{
+    font-size: 2rem;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.created__button-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.created__button-container * {
+    padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+    background-color: rgb(50, 181, 50);
+    font-size: 1.7rem;
+    border-radius: 7px;
+    color: white;
+}
+
+.created__button-container *:hover
+ {
+    cursor: pointer;
+    transition: .2s;
+    background-color: rgb(19, 162, 19);
+}
+
+@media (max-width: 1000px) {
+
+    .create-classroom__created img{
+        width: 70px;
+        height: 70px;
+    }
+    
+    .create-classroom__created{
+        display: flex;
+        gap: 1rem;
+        background-color: rgb(223, 255, 223);
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+    .created__text{
+        display: flex;
+        gap: .5rem;
+        flex-direction: column;
+    }
+    
+    .created__sucess-heading{
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+    
+    .created__join-code{
+        font-size: 1.5rem;
+    }
+
+
+    .create-classroom__field input{
+        width: 60%;
+        font-size: 1.6rem;
+
+    }
+    
+    .create-classroom__field a{
+        width: 60%;
+        font-size: 1.6rem;
+
+    }
+}
+
+@media (max-width: 600px) {
+
+    .create-classroom__my-profile label{
+        font-size: 1.7rem;
+    }
+
+}

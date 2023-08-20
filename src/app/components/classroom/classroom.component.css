@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.posts-container__filter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.classroom-wrapper{
+    position: relative;
+    animation: fade-in 1s ease;
+
+}
+
+.member-list{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}

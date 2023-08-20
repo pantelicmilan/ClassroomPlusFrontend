@@ -1,0 +1,64 @@
+<ng-container *ngIf="isPageLoading==true">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isPageLoading==false">
+    <div class ="main-selector">
+        <a (click)="switchEditMode()">{{editMode == true ? "View Mode" : "Edit Mode"}}</a>
+        <a (click)="logout()">Logout</a>
+        <p><b>Classroom Owned: {{classroomOwned}}</b></p>
+    </div>
+    <div class ="personal-info">
+        <ng-container *ngIf="personalInfo!=null">
+            <div>
+                <div class ="personal-info__profile-picture-container">
+                    
+                    <img [class.image-edit-mode]="editMode==true" src ="{{basePath}}/images/{{personalInfo.profileImageUrl}}" width="100px" height="100px" style="border-radius: 50%;"/>
+                    
+                    <ng-container *ngIf="editMode==true && personalInfo.profileImageUrl!=='default.png'">
+                        <div (click)="removeImage()" class ="remove-image">
+                            <img src ="assets/delete-profile-picture.svg" width="20px" height="20px"/>
+                        </div>
+                    </ng-container>
+    
+                    <input type="file" #fileInput style="display: none" accept="image/jpeg, image/jpg, image/png" multiple="false" (change)="editProfileImage($event)">
+    
+                    <ng-container *ngIf="editMode==true">
+                        <div (click)="selectFile()" class ="upload-image-animation">
+                            <p> Upload... </p>
+                            </div>
+                    </ng-container>
+    
+                </div>
+                <p><b>Name:</b></p>
+                <b> <input [disabled]="!editMode" enabled = "false" [(ngModel)]="editNameFieldText"/> </b> 
+            </div>
+            <div>
+                <p><b>Surname:</b></p>
+                <b> <input [disabled]="!editMode" [(ngModel)]="editSurnameFieldText"/> </b>
+            </div>
+    
+            <div>
+                <p><b>Username:</b></p>
+                <b> <input [disabled]="!editMode" [(ngModel)]="editUsernameFieldText"/> </b>
+            </div>
+    
+            <button [disabled]="!editMode" (click)="editProfile()">Apply Changes</button>
+    
+        </ng-container>
+    </div>
+    
+    <ng-container *ngIf="isErrorInEditingProfile==true">
+        <app-error-popup-message
+        (isPopupClosed)="isErrorInEditingProfile=false"
+        [errorHeading]="'Error with profile editing'"
+        [errorContent]="'Error with profile editing, please try again!'"
+        >
+        </app-error-popup-message>
+    </ng-container>
+
+</ng-container>
+
+<ng-container *ngIf="isLoadingSpinnerOn">
+    <app-loading-spinner></app-loading-spinner>
+</ng-container>
