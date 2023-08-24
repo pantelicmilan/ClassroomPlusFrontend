@@ -30,7 +30,7 @@ export class AuthService {
       formData.set('Surname', surname);
       formData.set('Email', email);
     
-      return this.http.post(this.apiBaseRoute.baseUrl + '/api/User', formData.toString(), { headers });
+      return this.http.post(this.apiBaseRoute.baseUrl + '/api/register', formData.toString(), { headers });
     }
 
   login(username: string, password: string) : Observable<any> {
